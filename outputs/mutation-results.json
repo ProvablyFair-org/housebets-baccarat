@@ -1,0 +1,631 @@
+{
+  "registrySha256": "d376be8c6f648ea6538cfc721dd118ea20c43105fa8db6cbd9547ba31e8d90a8",
+  "verifySha256": "9d1bf0cedabb67116b1a52757b6e27ff5ec94afd552c2c9a6ed44d794ad092e8",
+  "total": 59,
+  "killed": 59,
+  "survivors": [],
+  "controls": 1,
+  "controlsHeld": 1,
+  "uncoveredSteps": [],
+  "results": [
+    {
+      "id": "M01",
+      "kills": "BACCARAT-01",
+      "what": "swap a revealed seed for another (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M01n",
+      "kills": "BACCARAT-01",
+      "what": "every revealed server seed in Phase A set to null (re-pinned): the hash check scores FAIL and every row still prints",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M02",
+      "kills": "BACCARAT-02",
+      "what": "break one forward link (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M03",
+      "kills": "BACCARAT-03",
+      "what": "one round answered under another hash (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M03b",
+      "kills": "BACCARAT-03",
+      "what": "a server answer's nonce forged, the capture's copy of the round (nonce) left intact (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M04",
+      "kills": "BACCARAT-04",
+      "what": "repeat a nonce in a pair (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M05a",
+      "kills": "BACCARAT-05",
+      "what": "drop one round from a whole pair (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M05b",
+      "kills": "BACCARAT-05",
+      "what": "drop one round from the $10 set (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M05c",
+      "kills": "BACCARAT-05",
+      "what": "a population constant the data does not meet",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M05s",
+      "kills": "BACCARAT-05",
+      "what": "Phase A cut to its first 80 % (rounds 6500 -> 5200), every count in the file that read 6500 made to agree (re-pinned): the population check scores FAIL and every row still prints",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M06a",
+      "kills": "BACCARAT-06",
+      "what": "a Phase D pair whose seed is not the player-set one (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M06b",
+      "kills": "BACCARAT-06",
+      "what": "derivation that ignores the client seed",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M07",
+      "kills": "BACCARAT-07",
+      "what": "one served card changed (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M07d",
+      "kills": "BACCARAT-07",
+      "what": "BACCARAT-07 deleted from the verifier, the committed record regenerated and re-pinned",
+      "baseline": "PASS",
+      "status": "ABSENT",
+      "killed": true,
+      "verdict": "INCOMPLETE",
+      "exit": 3,
+      "expectVerdict": "INCOMPLETE"
+    },
+    {
+      "id": "M07p",
+      "kills": "BACCARAT-07",
+      "what": "BACCARAT-07 deleted from the verifier AND its row deleted from src/profile-map.ts, the record regenerated and re-pinned: the vendored framework profile still lists it, INCOMPLETE, exit 3",
+      "baseline": "PASS",
+      "status": "ABSENT",
+      "killed": true,
+      "verdict": "INCOMPLETE",
+      "exit": 3,
+      "expectVerdict": "INCOMPLETE",
+      "expectExit": 3
+    },
+    {
+      "id": "M08a",
+      "kills": "BACCARAT-08",
+      "what": "a rejection threshold one above the multiple of n",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M08b",
+      "kills": "BACCARAT-08",
+      "what": "the shuffle stops rejecting (plain u mod n, biased)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M09",
+      "kills": "BACCARAT-09",
+      "what": "a published worked example changed in the exhibit itself (E01 examples[0].deck[5] JC -> JD), re-pinned: the examples are read from E01 (graded check)",
+      "baseline": "PASS",
+      "status": "GAP",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M10a",
+      "kills": "BACCARAT-10",
+      "what": "a served outcome flipped (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M10b",
+      "kills": "BACCARAT-10",
+      "what": "Player draws on 0-4 instead of 0-5",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M10c",
+      "kills": "BACCARAT-10",
+      "what": "a Phase D round's served totals swapped and its winner flipped (Player 2, Banker 8, Banker wins, served as Player 8, Banker 2, Player wins), in the answer and the capture's copy, payouts untouched, re-pinned: the tableau comparison is required on the supplementary sets too",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M10d",
+      "kills": "BACCARAT-10",
+      "what": "a $10-set served natural flag flipped (re-pinned): the served flags are compared on the supplementary sets too",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M11",
+      "kills": "BACCARAT-11",
+      "what": "a round payout forged up by 1e-8 in the answer and its server record (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M11b",
+      "kills": "BACCARAT-11",
+      "what": "a round payout moved off the 1e-8 grid (0.44284494 -> 0.442844944) in the answer and its server record, re-pinned",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M11c",
+      "kills": "BACCARAT-11",
+      "what": "a served per-spot result label push -> lose with the payout unchanged (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M11r",
+      "kills": "BACCARAT-11",
+      "what": "BACCARAT-11 relabelled INFORMATIONAL in src/profile-map.ts and a round payout forged up by 1e-8 in the answer and its server record (re-pinned): exit 3 or 1, never 0",
+      "baseline": "PASS",
+      "status": "INFO",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1,
+      "expectExit": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "M12",
+      "kills": "BACCARAT-12",
+      "what": "an elevated stake that is not the declared one (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M12b",
+      "kills": "BACCARAT-12",
+      "what": "a $10-set Banker payout forged up by 1e-8 in the answer and its server record, re-pinned (the $10 set is recomputed by the verifier of record)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M13",
+      "kills": "BACCARAT-13",
+      "what": "a winning Dragon spot paid 1e-8 over its fraction (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M14a",
+      "kills": "BACCARAT-14",
+      "what": "a max-win cap that is not the served one, set alike in E03 and src/spec.ts (E03 re-pinned) so BACCARAT-26 passes: the answers still name the old cap",
+      "baseline": "PASS",
+      "status": "FLAG",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M14b",
+      "kills": "BACCARAT-14",
+      "what": "a natural-tie Dragon push served as a loss (re-pinned)",
+      "baseline": "PASS",
+      "status": "FLAG",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M15a",
+      "kills": "BACCARAT-15",
+      "what": "a per-spot floor the plan does not meet",
+      "baseline": "PASS",
+      "status": "FLAG*",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M15b",
+      "kills": "BACCARAT-15",
+      "what": "a capture plan the data does not follow",
+      "baseline": "PASS",
+      "status": "FLAG*",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M16",
+      "kills": "BACCARAT-16",
+      "what": "a bet-history row that disagrees with the round (re-pinned)",
+      "baseline": "PASS",
+      "status": "FLAG",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M16b",
+      "kills": "BACCARAT-16",
+      "what": "E05's ledger line rewritten to an impossible sum (5 entries = 7 matched + 0 open + 99), re-pinned",
+      "baseline": "PASS",
+      "status": "FLAG",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M16c",
+      "kills": "BACCARAT-16",
+      "what": "E05's Phase A row paid up by 1.00 with its net to match (TOTAL untouched), re-pinned (the package's own rows are recomputed)",
+      "baseline": "PASS",
+      "status": "FLAG",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M17",
+      "kills": "BACCARAT-17",
+      "what": "a published RNG message that carries the stake (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M18",
+      "kills": "BACCARAT-18",
+      "what": "a published probability changed in the exhibit itself (E01 probabilities.tie numerator +1), re-pinned: the probabilities are read from E01",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M19",
+      "kills": "BACCARAT-19",
+      "what": "E02's figure raised to 99.5% (rulesPaysFine), E02 re-pinned, the RTP table NOT regenerated: the committed table no longer matches this run, a reproduction failure",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1,
+      "expectExit": 1
+    },
+    {
+      "id": "M19b",
+      "kills": "BACCARAT-19",
+      "what": "control: E02 rulesPaysFine lowered to 'exactly 97%' (player side), re-pinned, table and record regenerated: the other places still say 99%, every spot meets it, -19 stays PASS, Full Pass, exit 0",
+      "control": true,
+      "baseline": "PASS",
+      "status": "PASS",
+      "held": true,
+      "killed": null,
+      "verdict": "PROVABLY FAIR — Full Pass",
+      "exit": 0,
+      "expectVerdict": "PROVABLY FAIR — Full Pass",
+      "expectExit": 0
+    },
+    {
+      "id": "M19e",
+      "kills": "BACCARAT-19",
+      "what": "only the rules panel the player reads (E02 rulesPaysFine) raised to 99.5%, re-pinned, table and record regenerated: held to the highest figure stated, RTP FIGURE OVERSTATED, exit 5",
+      "baseline": "PASS",
+      "status": "OVERSTATED",
+      "killed": true,
+      "verdict": "RTP FIGURE OVERSTATED",
+      "exit": 5,
+      "expectVerdict": "RTP FIGURE OVERSTATED",
+      "expectExit": 5
+    },
+    {
+      "id": "M19l",
+      "kills": "BACCARAT-19",
+      "what": "only the live rules text (E08 rulesPaysFine, the 16 Oct rewording) raised to 99.5%, re-pinned, table and record regenerated: held to the highest figure stated, RTP FIGURE OVERSTATED, exit 5",
+      "baseline": "PASS",
+      "status": "OVERSTATED",
+      "killed": true,
+      "verdict": "RTP FIGURE OVERSTATED",
+      "exit": 5,
+      "expectVerdict": "RTP FIGURE OVERSTATED",
+      "expectExit": 5
+    },
+    {
+      "id": "M19o",
+      "kills": "BACCARAT-19",
+      "what": "the published figure raised in the exhibits themselves (E02 rulesPaysFine, E01 return, summary and rules, and E08 rulesPaysFine, 99% -> 99.5%), all re-pinned, the RTP table and the record regenerated and re-pinned: RTP FIGURE OVERSTATED, exit 5",
+      "baseline": "PASS",
+      "status": "OVERSTATED",
+      "killed": true,
+      "verdict": "RTP FIGURE OVERSTATED",
+      "exit": 5,
+      "expectVerdict": "RTP FIGURE OVERSTATED",
+      "expectExit": 5
+    },
+    {
+      "id": "M19p",
+      "kills": "BACCARAT-19",
+      "what": "as far as baccarat allows: every paytable cell was reached by captured bets (BACCARAT-15: settlement classes never reached: none), so a lowered cell (Tie 128864955540321/12386130897740 -> 127000000000000/12386130897740, in E01 and src/spec.ts alike, E01 re-pinned, table and record regenerated) makes -19 OVERSTATED and the captured settlements FAIL: NOT PROVABLY FAIR outranks RTP FIGURE OVERSTATED, exit 1",
+      "baseline": "PASS",
+      "status": "OVERSTATED",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1,
+      "expectExit": 1
+    },
+    {
+      "id": "M20a",
+      "kills": "BACCARAT-20",
+      "what": "a forged census bin (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M20b",
+      "kills": "BACCARAT-20",
+      "what": "a cheaper Pass 1 (50 seeds) regenerated and re-pinned",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M20d",
+      "kills": "BACCARAT-20",
+      "what": "outputs/simulation-results.json deleted: Pass 1 has no census to equal, scores FAIL, and every row still prints",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M21a",
+      "kills": "BACCARAT-21",
+      "what": "a Pass 2 early window that is not the captured depth, regenerated and re-pinned",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M21b",
+      "kills": "BACCARAT-21",
+      "what": "a forged Pass 2 epoch return (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M21c",
+      "kills": "BACCARAT-21",
+      "what": "Pass 2 narrowed back to the Phase A seeds (the 16 supplementary epochs dropped), census regenerated and re-pinned: every revealed seed is no longer replayed",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M23",
+      "kills": "BACCARAT-23",
+      "what": "a framework S5 row renamed in MANIFEST.md (S5-4 Cross-player isolation -> Seed substitution): the row ids still count 8, the names no longer match the standardized matrix",
+      "baseline": "PASS",
+      "status": "GAP",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M24a",
+      "kills": "BACCARAT-24",
+      "what": "site-verifier/derive.js: the swap position of the shuffle step changed inside the module (j = k + u mod n -> j = k + u mod (n − 1)), the file re-pinned in src/artifact-pins.ts and RELEASE-MANIFEST.json and its sha256 replaced in MANIFEST.md and README.md: every pin and quoted hash agrees, and the side-by-side run with src/rng.ts on the captured rounds catches it",
+      "baseline": "PASS",
+      "status": "GAP",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M24b",
+      "kills": "BACCARAT-24",
+      "what": "the pin of site-verifier/derive.js in src/artifact-pins.ts (SITE_VERIFIER_PIN) no longer the sha256 of the shipped module, the module itself untouched",
+      "baseline": "PASS",
+      "status": "GAP",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M26",
+      "kills": "BACCARAT-26",
+      "what": "a dataset byte changed, not re-pinned",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M26e",
+      "kills": "BACCARAT-26",
+      "what": "E03's minimum bet changed in the exhibit (re-pinned) while src/spec.ts keeps its copy: the limits are compared with E03",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M27a",
+      "kills": "BACCARAT-27",
+      "what": "a committed RTP table edited and re-pinned",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M27b",
+      "kills": "BACCARAT-27",
+      "what": "a committed verification record edited and re-pinned",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M31a",
+      "kills": "BACCARAT-31",
+      "what": "a Phase D served pair flag flipped (re-pinned)",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M31b",
+      "kills": "BACCARAT-31",
+      "what": "Either Pair settled on the Player pair only",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    },
+    {
+      "id": "M31c",
+      "kills": "BACCARAT-31",
+      "what": "a Phase D served perfect-pair flag removed (playerPerfect -> null), re-pinned: an absent flag fails",
+      "baseline": "PASS",
+      "status": "FAIL",
+      "killed": true,
+      "verdict": "NOT PROVABLY FAIR",
+      "exit": 1
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "exhibit": "E02",
+  "what": "HouseBets baccarat: the rules panel text (English), as shipped in the baccarat game bundle; that the live baccarat page loads this bundle is inferred, not observed",
+  "source": {
+    "file": "bundles/platform-housegames-baccarat-game.js (HouseBets workshop)",
+    "sha256": "1c38b483c0f683a3b09f095b2cadf28d1760861047e7b352ae03d91883dae245",
+    "bytes": 933936,
+    "loadedByLivePage": "inferred, not observed (bundles/LIVE-BUNDLES.md, 10 Oct 2026: no \"2\" file exists for baccarat); the capture meta bundleSha256 is a constant in the capture script, not a reading from the page"
+  },
+  "rulesPanelEnglish": {
+    "rules": "Rules",
+    "rulesSideTitle": "Side bets",
+    "rulesPairDef": "Player Pair / Banker Pair: that hand's first two cards are the same rank.",
+    "rulesEitherDef": "Either Pair: either hand's first two cards are the same rank.",
+    "rulesPerfectDef": "Perfect Pair: either hand's first two cards are the same card — same rank and same suit.",
+    "rulesDragonTitle": "Dragon Bonus",
+    "rulesDragonDef": "Player Dragon / Banker Dragon pay when that hand wins — by how many points it wins, or for a natural. A natural tie returns the stake; anything else loses.",
+    "rulesDragonWin": "Win",
+    "rulesDragonNatural": "Natural",
+    "rulesDragonBy": "By {n}",
+    "rulesIntro": "Punto Banco. Card values: A = 1, 2–9 face, 10/J/Q/K = 0; a hand's total is the sum modulo 10. Player and Banker each get two cards; a hand of 8 or 9 is a natural and no third card is drawn. Otherwise Player draws a third on 0–5 and stands on 6–7. Banker draws by the standard table below. The higher total wins; equal totals pay the Tie spot.",
+    "rulesPaysFine": "Every spot returns exactly 99% of stake over the long run (1% house edge; no commission). Player and Banker push on a tie. Payouts are computed in integer 1e-8 units with a floor per round — the server's figure is reproducible to the last unit from the revealed seeds (see the Fairness tab).",
+    "rulesBankerTitle": "Banker's third-card rule",
+    "rulesBankerTotal": "Banker total",
+    "rulesBankerDraws": "Draws when the player's third is…",
+    "rulesBankerAlways": "always",
+    "rulesBankerNot8": "anything except 8",
+    "rulesBankerNever": "never",
+    "rulesBankerFine": "When the player stood (natural or 6–7), the banker draws on 0–5 and stands on 6–7."
+  }
+}

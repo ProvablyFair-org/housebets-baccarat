@@ -1,0 +1,48 @@
+{
+  "exhibit": "E06",
+  "what": "Phase D empty-seed control: the server's answer to POST /housegames/change_seed {gameType: baccarat, clientSeed: \"\"}",
+  "source": {
+    "file": "data/supplementary/housebets-baccarat-phaseD-200rounds.json",
+    "sha256": "137e3f335869e949a057e0688cb951f99b024033b9b4f37c1d02a3350290a1d7",
+    "field": "meta.emptySeedControl"
+  },
+  "record": {
+    "at": "2026-10-13T12:00:11.099Z",
+    "request": {
+      "method": "POST",
+      "path": "/housegames/change_seed",
+      "body": {
+        "gameType": "baccarat",
+        "clientSeed": ""
+      }
+    },
+    "seedsBefore": {
+      "clientSeed": "pfbaccdf3349606e8bfc6eafa9f6549814a4e6",
+      "hashedServerSeed": "cfcb24335a664167bfaf910aa3eef2f97d525c2207df46799c9aff1ee3c02d06",
+      "hashedNextServerSeed": "39d606d65f37f4b969f5d8e3110a75b737c496e7146f4a70fbb7c671181cee6d",
+      "lastSeed": "",
+      "nonce": 0,
+      "totalBets": 0,
+      "cursor": 0,
+      "id": 103021
+    },
+    "status": 400,
+    "code": null,
+    "response": {
+      "error": "an error occurred"
+    },
+    "error": "POST /change_seed 400: {\"error\":\"an error occurred\"}",
+    "accepted": false,
+    "answeredAt": "2026-10-13T12:00:12.143Z",
+    "seedsAfter": {
+      "clientSeed": "pfbaccdf3349606e8bfc6eafa9f6549814a4e6",
+      "hashedServerSeed": "cfcb24335a664167bfaf910aa3eef2f97d525c2207df46799c9aff1ee3c02d06",
+      "hashedNextServerSeed": "39d606d65f37f4b969f5d8e3110a75b737c496e7146f4a70fbb7c671181cee6d",
+      "lastSeed": "",
+      "nonce": 0,
+      "totalBets": 0,
+      "cursor": 0,
+      "id": 103021
+    }
+  }
+}

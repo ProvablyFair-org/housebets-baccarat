@@ -1,0 +1,744 @@
+{
+  "about": "Step-named mutation registry (BACCARAT-29). Each mutation is applied to a disposable copy of the package; 'kills' is the check that must stop passing. 'repin': true re-pins the mutated file's sha256 everywhere in src/ (a forgery that keeps BACCARAT-26 green); 'regen': 'simulate' re-runs the census in the copy and re-pins it (a cheaper or different experiment posing as the pinned one). 'regen': 'record' re-runs verify in the copy and commits its record (the npm run record workflow) before the scored run; 'expectVerdict' (a deleted step) also requires that verdict and a non-zero exit for the kill; 'class' tags the mutation classes BACCARAT-29 requires. 'edits' lists several file edits applied in order (each with its own 'repin'); 'regen' may be a list ('simulate', 'rtp-table', 'record', in that order); 'expectExit' requires the run's exit code; 'control': true marks an edit that must NOT move its check (held when the status equals the baseline and the run ends with expectVerdict and expectExit). Classes BACCARAT-29 requires killed: deleted-step, forged-server-answer, rtp-overstated (exit 5), profile-binding. 'op': 'rm' deletes 'file' from the copy; 'truncate' keeps the first floor(n·value) records of the array at 'path' ('coherent': every other count in the file that equalled n is set to the new length); 'null' sets 'keys' to null in every record of the array at 'path'. M01n, M05s and M20d (30 Oct 2026): every reveal null, the dataset cut to 80 %, the census deleted; a verifier that throws on one of them prints no row for the check it names, which this battery scores as a survivor, so each must leave its check FAIL with every row printed. 'repinPackage': true (with 'repin') also replaces the mutated file's sha256 in the copy's RELEASE-MANIFEST.json, MANIFEST.md and README.md, so every pin and quoted hash follows the forgery. M24a and M24b (BACCARAT-24, the site-verifier module): M24a changes the shuffle inside site-verifier/derive.js and re-pins it everywhere, so only the side-by-side run with src/rng.ts can catch it; M24b breaks SITE_VERIFIER_PIN and leaves the module alone.",
+  "mutations": [
+    {
+      "id": "M01",
+      "kills": "BACCARAT-01",
+      "what": "swap a revealed seed for another (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "set",
+      "path": "seeds[5].revealedServerSeed",
+      "value": "0000000000000000000000000000000000000000000000000000000000000000",
+      "repin": true
+    },
+    {
+      "id": "M02",
+      "kills": "BACCARAT-02",
+      "what": "break one forward link (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "set",
+      "path": "seeds[10].hashedNextServerSeed",
+      "value": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "repin": true
+    },
+    {
+      "id": "M03",
+      "kills": "BACCARAT-03",
+      "what": "one round answered under another hash (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "set",
+      "path": "rounds[200].hashedServerSeed",
+      "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "repin": true
+    },
+    {
+      "id": "M03b",
+      "kills": "BACCARAT-03",
+      "class": "forged-server-answer",
+      "what": "a server answer's nonce forged, the capture's copy of the round (nonce) left intact (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "set",
+      "path": "rounds[300].response.game.fairness.nonce",
+      "value": 99,
+      "repin": true
+    },
+    {
+      "id": "M04",
+      "kills": "BACCARAT-04",
+      "what": "repeat a nonce in a pair (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "set",
+      "path": "rounds[60].response.game.fairness.nonce",
+      "value": 12,
+      "repin": true,
+      "class": "forged-server-answer"
+    },
+    {
+      "id": "M05a",
+      "kills": "BACCARAT-05",
+      "what": "drop one round from a whole pair (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "delete",
+      "path": "rounds[120]",
+      "repin": true
+    },
+    {
+      "id": "M05b",
+      "kills": "BACCARAT-05",
+      "what": "drop one round from the $10 set (re-pinned)",
+      "file": "data/supplementary/housebets-baccarat-phaseC-10usd-300rounds.json",
+      "op": "delete",
+      "path": "rounds[0]",
+      "repin": true
+    },
+    {
+      "id": "M05c",
+      "kills": "BACCARAT-05",
+      "what": "a population constant the data does not meet",
+      "file": "src/loader.ts",
+      "op": "text",
+      "find": "export const EXPECTED_PHASE_D_ROUNDS = 200;",
+      "replace": "export const EXPECTED_PHASE_D_ROUNDS = 150;"
+    },
+    {
+      "id": "M06a",
+      "kills": "BACCARAT-06",
+      "what": "a Phase D pair whose seed is not the player-set one (re-pinned)",
+      "file": "data/supplementary/housebets-baccarat-phaseD-200rounds.json",
+      "op": "set",
+      "path": "seeds[1].clientSeed",
+      "value": "provablyfair-9",
+      "repin": true
+    },
+    {
+      "id": "M06b",
+      "kills": "BACCARAT-06",
+      "what": "derivation that ignores the client seed",
+      "file": "src/rng.ts",
+      "op": "text",
+      "find": "update(`${clientSeed}:${nonce}:${block}`)",
+      "replace": "update(`x:${nonce}:${block}`)"
+    },
+    {
+      "id": "M07",
+      "kills": "BACCARAT-07",
+      "what": "one served card changed (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "set",
+      "path": "rounds[300].response.game.deck[5]",
+      "value": "9H",
+      "repin": true
+    },
+    {
+      "id": "M07d",
+      "kills": "BACCARAT-07",
+      "class": "deleted-step",
+      "expectVerdict": "INCOMPLETE",
+      "what": "BACCARAT-07 deleted from the verifier, the committed record regenerated and re-pinned",
+      "file": "tests/verify.ts",
+      "op": "text",
+      "find": "record('BACCARAT-07', RA.cards",
+      "replace": "void ('BACCARAT-07', RA.cards",
+      "regen": "record"
+    },
+    {
+      "id": "M07p",
+      "kills": "BACCARAT-07",
+      "class": "profile-binding",
+      "expectVerdict": "INCOMPLETE",
+      "expectExit": 3,
+      "what": "BACCARAT-07 deleted from the verifier AND its row deleted from src/profile-map.ts, the record regenerated and re-pinned: the vendored framework profile still lists it, INCOMPLETE, exit 3",
+      "edits": [
+        {
+          "file": "tests/verify.ts",
+          "op": "text",
+          "find": "record('BACCARAT-07', RA.cards",
+          "replace": "void ('BACCARAT-07', RA.cards"
+        },
+        {
+          "file": "src/profile-map.ts",
+          "op": "text",
+          "find": "  { id: \"BACCARAT-07\", name: \"Card recomputation in deal order\", layer: \"S2\", kind: \"verifier-step\", policy: \"HARD_FAIL\" },\n",
+          "replace": ""
+        }
+      ],
+      "regen": "record"
+    },
+    {
+      "id": "M08a",
+      "kills": "BACCARAT-08",
+      "what": "a rejection threshold one above the multiple of n",
+      "file": "src/rng.ts",
+      "op": "text",
+      "find": "export const limitOf = (n: number): number => TWO32 - (TWO32 % n);",
+      "replace": "export const limitOf = (n: number): number => TWO32 - (TWO32 % n) + 1;"
+    },
+    {
+      "id": "M08b",
+      "kills": "BACCARAT-08",
+      "what": "the shuffle stops rejecting (plain u mod n, biased)",
+      "file": "src/rng.ts",
+      "op": "text",
+      "find": "while (u >= lim) { u = it.next().value as number; draws++; rejections++; }",
+      "replace": "while (false && u >= lim) { u = it.next().value as number; draws++; rejections++; }"
+    },
+    {
+      "id": "M09",
+      "kills": "BACCARAT-09",
+      "what": "a published worked example changed in the exhibit itself (E01 examples[0].deck[5] JC -> JD), re-pinned: the examples are read from E01 (graded check)",
+      "file": "evidence/E01-baccarat-fairness-spec-2026-10-12.json",
+      "op": "set",
+      "path": "answer.examples[0].deck[5]",
+      "value": "JD",
+      "repin": true
+    },
+    {
+      "id": "M10a",
+      "kills": "BACCARAT-10",
+      "what": "a served outcome flipped (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "set",
+      "path": "rounds[50].response.game.outcome",
+      "value": "player",
+      "repin": true
+    },
+    {
+      "id": "M10b",
+      "kills": "BACCARAT-10",
+      "what": "Player draws on 0-4 instead of 0-5",
+      "file": "src/rules.ts",
+      "op": "text",
+      "find": "if (pt <= 5) { p3 = ids[i++];",
+      "replace": "if (pt <= 4) { p3 = ids[i++];"
+    },
+    {
+      "id": "M10c",
+      "kills": "BACCARAT-10",
+      "what": "a Phase D round's served totals swapped and its winner flipped (Player 2, Banker 8, Banker wins, served as Player 8, Banker 2, Player wins), in the answer and the capture's copy, payouts untouched, re-pinned: the tableau comparison is required on the supplementary sets too",
+      "edits": [
+        {
+          "file": "data/supplementary/housebets-baccarat-phaseD-200rounds.json",
+          "op": "set",
+          "path": "rounds[52].response.game.player.total",
+          "value": 8,
+          "repin": true
+        },
+        {
+          "file": "data/supplementary/housebets-baccarat-phaseD-200rounds.json",
+          "op": "set",
+          "path": "rounds[52].response.game.banker.total",
+          "value": 2,
+          "repin": true
+        },
+        {
+          "file": "data/supplementary/housebets-baccarat-phaseD-200rounds.json",
+          "op": "set",
+          "path": "rounds[52].response.game.outcome",
+          "value": "player",
+          "repin": true
+        },
+        {
+          "file": "data/supplementary/housebets-baccarat-phaseD-200rounds.json",
+          "op": "set",
+          "path": "rounds[52].outcome",
+          "value": "player",
+          "repin": true
+        }
+      ]
+    },
+    {
+      "id": "M10d",
+      "kills": "BACCARAT-10",
+      "what": "a $10-set served natural flag flipped (re-pinned): the served flags are compared on the supplementary sets too",
+      "file": "data/supplementary/housebets-baccarat-phaseC-10usd-300rounds.json",
+      "op": "set",
+      "path": "rounds[21].response.game.natural",
+      "value": true,
+      "repin": true
+    },
+    {
+      "id": "M11",
+      "kills": "BACCARAT-11",
+      "what": "a round payout forged up by 1e-8 in the answer and its server record (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "add",
+      "paths": [
+        "rounds[7].response.game.payout",
+        "rounds[7].response.round.payout"
+      ],
+      "value": 1e-08,
+      "repin": true
+    },
+    {
+      "id": "M11b",
+      "kills": "BACCARAT-11",
+      "what": "a round payout moved off the 1e-8 grid (0.44284494 -> 0.442844944) in the answer and its server record, re-pinned",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "set",
+      "paths": [
+        "rounds[5].response.game.payout",
+        "rounds[5].response.round.payout"
+      ],
+      "value": 0.442844944,
+      "repin": true
+    },
+    {
+      "id": "M11c",
+      "kills": "BACCARAT-11",
+      "class": "forged-server-answer",
+      "what": "a served per-spot result label push -> lose with the payout unchanged (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "set",
+      "path": "rounds[4].response.game.bets[0].result",
+      "value": "lose",
+      "repin": true
+    },
+    {
+      "id": "M11r",
+      "kills": "BACCARAT-11",
+      "class": "profile-binding",
+      "expectExit": [
+        1,
+        3
+      ],
+      "what": "BACCARAT-11 relabelled INFORMATIONAL in src/profile-map.ts and a round payout forged up by 1e-8 in the answer and its server record (re-pinned): exit 3 or 1, never 0",
+      "edits": [
+        {
+          "file": "src/profile-map.ts",
+          "op": "text",
+          "find": "{ id: \"BACCARAT-11\", name: \"Payout arithmetic\", layer: \"S3\", kind: \"verifier-step\", policy: \"HARD_FAIL\" }",
+          "replace": "{ id: \"BACCARAT-11\", name: \"Payout arithmetic\", layer: \"S3\", kind: \"verifier-step\", policy: \"INFORMATIONAL\" }"
+        },
+        {
+          "file": "data/housebets-baccarat-6500rounds.json",
+          "op": "add",
+          "paths": [
+            "rounds[7].response.game.payout",
+            "rounds[7].response.round.payout"
+          ],
+          "value": 1e-08,
+          "repin": true
+        }
+      ]
+    },
+    {
+      "id": "M12",
+      "kills": "BACCARAT-12",
+      "what": "an elevated stake that is not the declared one (re-pinned)",
+      "file": "data/supplementary/housebets-baccarat-phaseC-300rounds.json",
+      "op": "set",
+      "path": "rounds[3].request.bets[0].amount",
+      "value": 1.99,
+      "repin": true
+    },
+    {
+      "id": "M12b",
+      "kills": "BACCARAT-12",
+      "what": "a $10-set Banker payout forged up by 1e-8 in the answer and its server record, re-pinned (the $10 set is recomputed by the verifier of record)",
+      "file": "data/supplementary/housebets-baccarat-phaseC-10usd-300rounds.json",
+      "op": "add",
+      "paths": [
+        "rounds[0].response.game.payout",
+        "rounds[0].response.round.payout"
+      ],
+      "value": 1e-08,
+      "repin": true
+    },
+    {
+      "id": "M13",
+      "kills": "BACCARAT-13",
+      "what": "a winning Dragon spot paid 1e-8 over its fraction (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "add",
+      "path": "rounds[0].response.game.bets[8].payout",
+      "value": 1e-08,
+      "repin": true
+    },
+    {
+      "id": "M14a",
+      "kills": "BACCARAT-14",
+      "what": "a max-win cap that is not the served one, set alike in E03 and src/spec.ts (E03 re-pinned) so BACCARAT-26 passes: the answers still name the old cap",
+      "edits": [
+        {
+          "file": "evidence/E03-baccarat-limits-2026-10-12.json",
+          "op": "set",
+          "path": "answer.wallet.maxWin",
+          "value": 1000310.0961299,
+          "repin": true
+        },
+        {
+          "file": "src/spec.ts",
+          "op": "text",
+          "find": "export const MAX_WIN = '1000310.0961298';",
+          "replace": "export const MAX_WIN = '1000310.0961299';"
+        }
+      ]
+    },
+    {
+      "id": "M14b",
+      "kills": "BACCARAT-14",
+      "what": "a natural-tie Dragon push served as a loss (re-pinned)",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "set",
+      "path": "rounds[7].response.game.bets[7].payout",
+      "value": 0,
+      "repin": true
+    },
+    {
+      "id": "M15a",
+      "kills": "BACCARAT-15",
+      "what": "a per-spot floor the plan does not meet",
+      "file": "src/loader.ts",
+      "op": "text",
+      "find": "export const SPOT_FLOOR = 50;",
+      "replace": "export const SPOT_FLOOR = 5000;"
+    },
+    {
+      "id": "M15b",
+      "kills": "BACCARAT-15",
+      "what": "a capture plan the data does not follow",
+      "file": "src/loader.ts",
+      "op": "text",
+      "find": "A: { rounds: 4333, spots: 9 }",
+      "replace": "A: { rounds: 4334, spots: 9 }"
+    },
+    {
+      "id": "M16",
+      "kills": "BACCARAT-16",
+      "what": "a bet-history row that disagrees with the round (re-pinned)",
+      "file": "evidence/E04-baccarat-bet-history-2026-10-13.json",
+      "op": "set",
+      "path": "rows[10].payout",
+      "value": "1.00000000",
+      "repin": true
+    },
+    {
+      "id": "M16b",
+      "kills": "BACCARAT-16",
+      "what": "E05's ledger line rewritten to an impossible sum (5 entries = 7 matched + 0 open + 99), re-pinned",
+      "file": "evidence/E05-account-reconcile-2026-10-13.txt",
+      "op": "text",
+      "find": "ledger: 86979 entries = 86966 captured rounds matched exactly + 0 open + 13 from",
+      "replace": "ledger: 5 entries = 7 captured rounds matched exactly + 0 open + 99 from",
+      "repin": true
+    },
+    {
+      "id": "M16c",
+      "kills": "BACCARAT-16",
+      "what": "E05's Phase A row paid up by 1.00 with its net to match (TOTAL untouched), re-pinned (the package's own rows are recomputed)",
+      "file": "evidence/E05-account-reconcile-2026-10-13.txt",
+      "op": "text",
+      "find": "6500        857.96  845.86598549  -12.09401451",
+      "replace": "6500        857.96  846.86598549  -11.09401451",
+      "repin": true
+    },
+    {
+      "id": "M17",
+      "kills": "BACCARAT-17",
+      "what": "a published RNG message that carries the stake (re-pinned)",
+      "file": "evidence/E01-baccarat-fairness-spec-2026-10-12.json",
+      "op": "text",
+      "find": "message = clientSeed:nonce:i)",
+      "replace": "message = clientSeed:nonce:i:stake)",
+      "repin": true
+    },
+    {
+      "id": "M18",
+      "kills": "BACCARAT-18",
+      "what": "a published probability changed in the exhibit itself (E01 probabilities.tie numerator +1), re-pinned: the probabilities are read from E01",
+      "file": "evidence/E01-baccarat-fairness-spec-2026-10-12.json",
+      "op": "text",
+      "find": "\"tie\": \"619306544887/6508331087895\"",
+      "replace": "\"tie\": \"619306544888/6508331087895\"",
+      "repin": true
+    },
+    {
+      "id": "M19",
+      "kills": "BACCARAT-19",
+      "what": "E02's figure raised to 99.5% (rulesPaysFine), E02 re-pinned, the RTP table NOT regenerated: the committed table no longer matches this run, a reproduction failure",
+      "file": "evidence/E02-baccarat-rules-panel-2026-10-10.json",
+      "op": "text",
+      "find": "Every spot returns exactly 99% of stake",
+      "replace": "Every spot returns exactly 99.5% of stake",
+      "repin": true,
+      "expectExit": 1
+    },
+    {
+      "id": "M19o",
+      "kills": "BACCARAT-19",
+      "class": "rtp-overstated",
+      "expectVerdict": "RTP FIGURE OVERSTATED",
+      "expectExit": 5,
+      "what": "the published figure raised in the exhibits themselves (E02 rulesPaysFine, E01 return, summary and rules, and E08 rulesPaysFine, 99% -> 99.5%), all re-pinned, the RTP table and the record regenerated and re-pinned: RTP FIGURE OVERSTATED, exit 5",
+      "edits": [
+        {
+          "file": "evidence/E02-baccarat-rules-panel-2026-10-10.json",
+          "op": "text",
+          "find": "Every spot returns exactly 99% of stake",
+          "replace": "Every spot returns exactly 99.5% of stake",
+          "repin": true
+        },
+        {
+          "file": "evidence/E01-baccarat-fairness-spec-2026-10-12.json",
+          "op": "text",
+          "find": "99% on every spot",
+          "replace": "99.5% on every spot",
+          "all": true,
+          "repin": true
+        },
+        {
+          "file": "evidence/E01-baccarat-fairness-spec-2026-10-12.json",
+          "op": "text",
+          "find": "never exceeds 99%",
+          "replace": "never exceeds 99.5%",
+          "repin": true
+        },
+        {
+          "file": "evidence/E08-baccarat-rules-panel-live-2026-10-19.json",
+          "op": "text",
+          "find": "Theoretical RTP before payout rounding: 99% (1% house edge",
+          "replace": "Theoretical RTP before payout rounding: 99.5% (0.5% house edge",
+          "repin": true
+        }
+      ],
+      "regen": [
+        "rtp-table",
+        "record"
+      ]
+    },
+    {
+      "id": "M19e",
+      "kills": "BACCARAT-19",
+      "class": "rtp-overstated",
+      "expectVerdict": "RTP FIGURE OVERSTATED",
+      "expectExit": 5,
+      "what": "only the rules panel the player reads (E02 rulesPaysFine) raised to 99.5%, re-pinned, table and record regenerated: held to the highest figure stated, RTP FIGURE OVERSTATED, exit 5",
+      "file": "evidence/E02-baccarat-rules-panel-2026-10-10.json",
+      "op": "text",
+      "find": "Every spot returns exactly 99% of stake",
+      "replace": "Every spot returns exactly 99.5% of stake",
+      "repin": true,
+      "regen": [
+        "rtp-table",
+        "record"
+      ]
+    },
+    {
+      "id": "M19l",
+      "kills": "BACCARAT-19",
+      "class": "rtp-overstated",
+      "expectVerdict": "RTP FIGURE OVERSTATED",
+      "expectExit": 5,
+      "what": "only the live rules text (E08 rulesPaysFine, the 16 Oct rewording) raised to 99.5%, re-pinned, table and record regenerated: held to the highest figure stated, RTP FIGURE OVERSTATED, exit 5",
+      "file": "evidence/E08-baccarat-rules-panel-live-2026-10-19.json",
+      "op": "text",
+      "find": "Theoretical RTP before payout rounding: 99% (1% house edge",
+      "replace": "Theoretical RTP before payout rounding: 99.5% (0.5% house edge",
+      "repin": true,
+      "regen": [
+        "rtp-table",
+        "record"
+      ]
+    },
+    {
+      "id": "M19b",
+      "kills": "BACCARAT-19",
+      "control": true,
+      "expectVerdict": "PROVABLY FAIR — Full Pass",
+      "expectExit": 0,
+      "what": "control: E02 rulesPaysFine lowered to 'exactly 97%' (player side), re-pinned, table and record regenerated: the other places still say 99%, every spot meets it, -19 stays PASS, Full Pass, exit 0",
+      "file": "evidence/E02-baccarat-rules-panel-2026-10-10.json",
+      "op": "text",
+      "find": "Every spot returns exactly 99% of stake",
+      "replace": "Every spot returns exactly 97% of stake",
+      "repin": true,
+      "regen": [
+        "rtp-table",
+        "record"
+      ]
+    },
+    {
+      "id": "M19p",
+      "kills": "BACCARAT-19",
+      "expectExit": 1,
+      "what": "as far as baccarat allows: every paytable cell was reached by captured bets (BACCARAT-15: settlement classes never reached: none), so a lowered cell (Tie 128864955540321/12386130897740 -> 127000000000000/12386130897740, in E01 and src/spec.ts alike, E01 re-pinned, table and record regenerated) makes -19 OVERSTATED and the captured settlements FAIL: NOT PROVABLY FAIR outranks RTP FIGURE OVERSTATED, exit 1",
+      "edits": [
+        {
+          "file": "evidence/E01-baccarat-fairness-spec-2026-10-12.json",
+          "op": "text",
+          "find": "\"num\": 128864955540321",
+          "replace": "\"num\": 127000000000000",
+          "repin": true
+        },
+        {
+          "file": "src/spec.ts",
+          "op": "text",
+          "find": "tie: [128864955540321n, 12386130897740n]",
+          "replace": "tie: [127000000000000n, 12386130897740n]"
+        }
+      ],
+      "regen": [
+        "rtp-table",
+        "record"
+      ]
+    },
+    {
+      "id": "M20a",
+      "kills": "BACCARAT-20",
+      "what": "a forged census bin (re-pinned)",
+      "file": "outputs/simulation-results.json",
+      "op": "add",
+      "path": "pass1.positions[0][3]",
+      "value": 1,
+      "repin": true
+    },
+    {
+      "id": "M20b",
+      "kills": "BACCARAT-20",
+      "what": "a cheaper Pass 1 (50 seeds) regenerated and re-pinned",
+      "file": "src/sim-config.ts",
+      "op": "text",
+      "find": "export const PASS1_SEEDS = 100;",
+      "replace": "export const PASS1_SEEDS = 50;",
+      "regen": "simulate"
+    },
+    {
+      "id": "M21a",
+      "kills": "BACCARAT-21",
+      "what": "a Pass 2 early window that is not the captured depth, regenerated and re-pinned",
+      "file": "src/sim-config.ts",
+      "op": "text",
+      "find": "export const SIM_PASS2_EARLY_WINDOW = 50;",
+      "replace": "export const SIM_PASS2_EARLY_WINDOW = 40;",
+      "regen": "simulate"
+    },
+    {
+      "id": "M21b",
+      "kills": "BACCARAT-21",
+      "what": "a forged Pass 2 epoch return (re-pinned)",
+      "file": "outputs/simulation-results.json",
+      "op": "set",
+      "path": "pass2.epochs[0].early.ret",
+      "value": "0",
+      "repin": true
+    },
+    {
+      "id": "M21c",
+      "kills": "BACCARAT-21",
+      "what": "Pass 2 narrowed back to the Phase A seeds (the 16 supplementary epochs dropped), census regenerated and re-pinned: every revealed seed is no longer replayed",
+      "file": "src/simulate.ts",
+      "op": "text",
+      "find": "for (const [set, ds] of sets) {",
+      "replace": "for (const [set, ds] of sets.slice(0, 1)) {",
+      "regen": "simulate"
+    },
+    {
+      "id": "M23",
+      "kills": "BACCARAT-23",
+      "what": "a framework S5 row renamed in MANIFEST.md (S5-4 Cross-player isolation -> Seed substitution): the row ids still count 8, the names no longer match the standardized matrix",
+      "file": "MANIFEST.md",
+      "op": "text",
+      "find": "| S5-4 | Cross-player isolation |",
+      "replace": "| S5-4 | Seed substitution |"
+    },
+    {
+      "id": "M26",
+      "kills": "BACCARAT-26",
+      "what": "a dataset byte changed, not re-pinned",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "add",
+      "path": "rounds[9].response.game.payout",
+      "value": 0.01,
+      "repin": false
+    },
+    {
+      "id": "M26e",
+      "kills": "BACCARAT-26",
+      "what": "E03's minimum bet changed in the exhibit (re-pinned) while src/spec.ts keeps its copy: the limits are compared with E03",
+      "file": "evidence/E03-baccarat-limits-2026-10-12.json",
+      "op": "set",
+      "path": "answer.wallet.minBet",
+      "value": 0.01000312,
+      "repin": true
+    },
+    {
+      "id": "M27a",
+      "kills": "BACCARAT-27",
+      "what": "a committed RTP table edited and re-pinned",
+      "file": "outputs/rtp-claim-table.json",
+      "op": "set",
+      "path": "settingSpace",
+      "value": "edited",
+      "repin": true
+    },
+    {
+      "id": "M27b",
+      "kills": "BACCARAT-27",
+      "what": "a committed verification record edited and re-pinned",
+      "file": "outputs/verification-results.json",
+      "op": "set",
+      "path": "verdict",
+      "value": "PROVABLY FAIR — Full Pass (edited)",
+      "repin": true
+    },
+    {
+      "id": "M31a",
+      "kills": "BACCARAT-31",
+      "what": "a Phase D served pair flag flipped (re-pinned)",
+      "file": "data/supplementary/housebets-baccarat-phaseD-200rounds.json",
+      "op": "set",
+      "path": "rounds[21].response.game.playerPair",
+      "value": false,
+      "repin": true
+    },
+    {
+      "id": "M31b",
+      "kills": "BACCARAT-31",
+      "what": "Either Pair settled on the Player pair only",
+      "file": "src/rules.ts",
+      "op": "text",
+      "find": "spot === 'eitherPair' ? d.pPair || d.bPair",
+      "replace": "spot === 'eitherPair' ? d.pPair"
+    },
+    {
+      "id": "M31c",
+      "kills": "BACCARAT-31",
+      "what": "a Phase D served perfect-pair flag removed (playerPerfect -> null), re-pinned: an absent flag fails",
+      "file": "data/supplementary/housebets-baccarat-phaseD-200rounds.json",
+      "op": "set",
+      "path": "rounds[21].response.game.playerPerfect",
+      "value": null,
+      "repin": true
+    },
+    {
+      "id": "M01n",
+      "kills": "BACCARAT-01",
+      "what": "every revealed server seed in Phase A set to null (re-pinned): the hash check scores FAIL and every row still prints",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "null",
+      "path": "seeds",
+      "keys": [
+        "revealedServerSeed"
+      ],
+      "repin": true
+    },
+    {
+      "id": "M05s",
+      "kills": "BACCARAT-05",
+      "what": "Phase A cut to its first 80 % (rounds 6500 -> 5200), every count in the file that read 6500 made to agree (re-pinned): the population check scores FAIL and every row still prints",
+      "file": "data/housebets-baccarat-6500rounds.json",
+      "op": "truncate",
+      "path": "rounds",
+      "value": 0.8,
+      "coherent": true,
+      "repin": true
+    },
+    {
+      "id": "M20d",
+      "kills": "BACCARAT-20",
+      "what": "outputs/simulation-results.json deleted: Pass 1 has no census to equal, scores FAIL, and every row still prints",
+      "file": "outputs/simulation-results.json",
+      "op": "rm"
+    },
+    {
+      "id": "M24a",
+      "kills": "BACCARAT-24",
+      "what": "site-verifier/derive.js: the swap position of the shuffle step changed inside the module (j = k + u mod n -> j = k + u mod (n − 1)), the file re-pinned in src/artifact-pins.ts and RELEASE-MANIFEST.json and its sha256 replaced in MANIFEST.md and README.md: every pin and quoted hash agrees, and the side-by-side run with src/rng.ts on the captured rounds catches it",
+      "file": "site-verifier/derive.js",
+      "op": "text",
+      "find": "    const j = k + u % n;\n    const a = at(k), b = at(j);",
+      "replace": "    const j = k + u % (n - 1);\n    const a = at(k), b = at(j);",
+      "repin": true,
+      "repinPackage": true
+    },
+    {
+      "id": "M24b",
+      "kills": "BACCARAT-24",
+      "what": "the pin of site-verifier/derive.js in src/artifact-pins.ts (SITE_VERIFIER_PIN) no longer the sha256 of the shipped module, the module itself untouched",
+      "file": "src/artifact-pins.ts",
+      "op": "text",
+      "find": "['site-verifier/derive.js', '",
+      "replace": "['site-verifier/derive.js', '0"
+    }
+  ]
+}

@@ -1,0 +1,390 @@
+{
+  "exhibit": "E01",
+  "what": "HouseBets House Baccarat: the server's published fairness spec (GET /housegames/baccarat/fairness)",
+  "source": {
+    "file": "data/housebets-baccarat-6500rounds.json",
+    "sha256": "061d54f26ef58aea3fb7a969b6c2ba310d6d6cc6dc932d4ea1f3776e1dd91717",
+    "field": "meta.preflight.fairnessSpec"
+  },
+  "readAt": "2026-10-12T17:07:28.469Z",
+  "answer": {
+    "version": "shoe8",
+    "derivation": "A fresh 8-deck shoe (416 cards) per round. block_i = HMAC_SHA256(key = serverSeed, message = clientSeed:nonce:i); the stream block_0 ‖ block_1 ‖ … is read as big-endian 32-bit numbers u. shoe = [0..415] with entry k holding card id k mod 52, shuffled by Fisher–Yates from the top: for k = 0..414: n = 416 − k, draw u, redraw while u ≥ 2^32 − (2^32 mod n), j = k + (u mod n), swap shoe[k] and shoe[j]. Cards are dealt shoe[0], shoe[1], … — George's House Baccarat derivation (handover 21-fair.js).",
+    "cards": "Card id 0..51: suit = floor(id / 13) (0 ♠, 1 ♥, 2 ♦, 3 ♣), rank = id mod 13 (A, 2..10, J, Q, K). Baccarat values: A = 1, 2..9 face, 10/J/Q/K = 0; a hand's total is the sum mod 10.",
+    "deal": [
+      "deal order P1 B1 P2 B2: Player shoe[0], shoe[2]; Banker shoe[1], shoe[3]; then each third card the rules call for takes the next card (the Player's third first)",
+      "a two-card total of 8 or 9 either side (a natural) ends the round",
+      "else Player draws its third on 0..5, stands on 6..7",
+      "Banker then: if Player stood, draws its third on 0..5; else draws by the Player-third-card rule (bt 0..2 always; 3 unless v=8; 4 on 2..7; 5 on 4..7; 6 on 6..7; 7 never)",
+      "higher total wins; equal is a tie"
+    ],
+    "rules": [
+      "Player and Banker get two cards each",
+      "a natural ends the round at once",
+      "after the rule's draws the higher total wins; equal is a tie",
+      "Player and Banker spots push the stake on a tie; a tie spot pays only on a tie",
+      "Player Pair / Banker Pair win when that hand's first two cards share a rank — regardless of the Player/Banker outcome",
+      "Either Pair wins when either hand's first two cards share a rank; Perfect Pair wins when either hand's first two cards share BOTH rank AND suit, paid once",
+      "Player Dragon Bonus wins when Player wins by a natural (rung 'natural') or by a non-natural margin of 9/8/7/6/5/4; a natural tie pushes; any other result loses (incl. a win by 1..3 or a non-natural tie)",
+      "Banker Dragon Bonus is the mirror on the Banker side",
+      "every payout is rounded down once to the wallet's smallest unit (1e-8), so a spot's return never exceeds 99%"
+    ],
+    "pays": [
+      {
+        "spot": "player",
+        "num": 349436473927743,
+        "den": 174259240827520,
+        "multiplier": 2.005267968965913
+      },
+      {
+        "spot": "banker",
+        "num": 349436473927743,
+        "den": 179082231752960,
+        "multiplier": 1.9512626713842998
+      },
+      {
+        "spot": "tie",
+        "num": 128864955540321,
+        "den": 12386130897740,
+        "multiplier": 10.40397171677186
+      },
+      {
+        "spot": "playerPair",
+        "num": 8217,
+        "den": 620,
+        "multiplier": 13.253225806451614
+      },
+      {
+        "spot": "bankerPair",
+        "num": 8217,
+        "den": 620,
+        "multiplier": 13.253225806451614
+      },
+      {
+        "spot": "eitherPair",
+        "num": 234159849,
+        "den": 34016300,
+        "multiplier": 6.883754229589932
+      },
+      {
+        "spot": "perfectPair",
+        "num": 33451407,
+        "den": 1130260,
+        "multiplier": 29.59620529789606
+      }
+    ],
+    "dragon": [
+      {
+        "spot": "playerBonus",
+        "kNum": 266415435632443,
+        "kDen": 259965648810080,
+        "rungs": [
+          {
+            "name": "natural",
+            "m": 1,
+            "num": 526381084442523,
+            "den": 259965648810080,
+            "multiplier": 2.024810150309801
+          },
+          {
+            "name": "9",
+            "m": 30,
+            "num": 825242871778337,
+            "den": 25996564881008,
+            "multiplier": 31.74430450929403
+          },
+          {
+            "name": "8",
+            "m": 10,
+            "num": 292412000513451,
+            "den": 25996564881008,
+            "multiplier": 11.24810150309801
+          },
+          {
+            "name": "7",
+            "m": 6,
+            "num": 929229131302369,
+            "den": 129982824405040,
+            "multiplier": 7.148860901858805
+          },
+          {
+            "name": "6",
+            "m": 4,
+            "num": 331406847834963,
+            "den": 64991412202520,
+            "multiplier": 5.099240601239203
+          },
+          {
+            "name": "5",
+            "m": 2,
+            "num": 396398260037483,
+            "den": 129982824405040,
+            "multiplier": 3.0496203006196017
+          },
+          {
+            "name": "4",
+            "m": 1,
+            "num": 526381084442523,
+            "den": 259965648810080,
+            "multiplier": 2.024810150309801
+          }
+        ]
+      },
+      {
+        "spot": "bankerBonus",
+        "kNum": 269184974484283,
+        "kDen": 236488131746080,
+        "rungs": [
+          {
+            "name": "natural",
+            "m": 1,
+            "num": 505673106230363,
+            "den": 236488131746080,
+            "multiplier": 2.138259973119116
+          },
+          {
+            "name": "9",
+            "m": 30,
+            "num": 831203736627457,
+            "den": 23648813174608,
+            "multiplier": 35.14779919357348
+          },
+          {
+            "name": "8",
+            "m": 10,
+            "num": 292833787658891,
+            "den": 23648813174608,
+            "multiplier": 12.38259973119116
+          },
+          {
+            "name": "7",
+            "m": 6,
+            "num": 925798989325889,
+            "den": 118244065873040,
+            "multiplier": 7.8295598387146965
+          },
+          {
+            "name": "6",
+            "m": 4,
+            "num": 328307007420803,
+            "den": 59122032936520,
+            "multiplier": 5.553039892476464
+          },
+          {
+            "name": "5",
+            "m": 2,
+            "num": 387429040357323,
+            "den": 118244065873040,
+            "multiplier": 3.276519946238232
+          },
+          {
+            "name": "4",
+            "m": 1,
+            "num": 505673106230363,
+            "den": 236488131746080,
+            "multiplier": 2.138259973119116
+          }
+        ]
+      }
+    ],
+    "probabilities": {
+      "banker": "8954111587648/19524993263685",
+      "bankerBonus/4": "87303458024/2169443695965",
+      "bankerBonus/5": "40957261024/1301666217579",
+      "bankerBonus/6": "3449076168/144629579731",
+      "bankerBonus/7": "310613669056/19524993263685",
+      "bankerBonus/8": "110566768688/19524993263685",
+      "bankerBonus/9": "60118526992/19524993263685",
+      "bankerBonus/natural": "74989984/461223945",
+      "bankerBonus/push": "1648498/92244789",
+      "bankerPair": "31/415",
+      "eitherPair": "340163/2365251",
+      "perfectPair": "56513/1689465",
+      "player": "8712962041376/19524993263685",
+      "playerBonus/4": "6948673816/185952316797",
+      "playerBonus/5": "129819660928/3904998652737",
+      "playerBonus/6": "183904814216/6508331087895",
+      "playerBonus/7": "69992391776/3904998652737",
+      "playerBonus/8": "44397975968/6508331087895",
+      "playerBonus/9": "71911842832/19524993263685",
+      "playerBonus/natural": "74989984/461223945",
+      "playerBonus/push": "1648498/92244789",
+      "playerPair": "31/415",
+      "tie": "619306544887/6508331087895"
+    },
+    "return": "99% on every spot, priced on the fresh 8-deck shoe: Player = (99/100 − T)/P, Banker = (99/100 − T)/B, Tie = 99/100 / T, Pair = 99/100 ÷ (31/415), Either Pair = 99/100 ÷ P(either), Perfect Pair = 99/100 ÷ P(either hand's first two cards are the same card). Dragon Bonus pays profit = k·m per rung (m = 1, 30, 10, 6, 4, 2, 1 for natural, 9 … 4), with one exact k per side making P(push) + Σ p_i × (1 + k·m_i) = 99/100. These are George's House Baccarat pays in exact form.",
+    "examples": [
+      {
+        "serverSeed": "5a1f7d2c9e4b8a3f6d0c2b5e8f1a4d7c0b3e6f9a2d5c8b1e4f7a0d3c6b9e2f5a",
+        "clientSeed": "housebets",
+        "nonce": 1,
+        "deck": [
+          "KC",
+          "JH",
+          "QC",
+          "9D",
+          "9C",
+          "JC"
+        ],
+        "player": [
+          "KC",
+          "QC"
+        ],
+        "banker": [
+          "JH",
+          "9D"
+        ],
+        "playerTotal": 0,
+        "bankerTotal": 9,
+        "outcome": "banker",
+        "natural": true,
+        "playerNatural": false,
+        "bankerNatural": true,
+        "playerPair": false,
+        "bankerPair": false,
+        "playerPerfect": false,
+        "bankerPerfect": false,
+        "margin": 9,
+        "cardsUsed": 4
+      },
+      {
+        "serverSeed": "housebets-demo-server-seed-0001",
+        "clientSeed": "demo-client",
+        "nonce": 1,
+        "deck": [
+          "5H",
+          "7H",
+          "7D",
+          "4C",
+          "TD",
+          "JH"
+        ],
+        "player": [
+          "5H",
+          "7D",
+          "TD"
+        ],
+        "banker": [
+          "7H",
+          "4C",
+          "JH"
+        ],
+        "playerTotal": 2,
+        "bankerTotal": 1,
+        "outcome": "player",
+        "natural": false,
+        "playerNatural": false,
+        "bankerNatural": false,
+        "playerPair": false,
+        "bankerPair": false,
+        "playerPerfect": false,
+        "bankerPerfect": false,
+        "margin": 1,
+        "cardsUsed": 6
+      },
+      {
+        "serverSeed": "housebets-demo-server-seed-0001",
+        "clientSeed": "demo-client",
+        "nonce": 2,
+        "deck": [
+          "4D",
+          "KC",
+          "QH",
+          "7D",
+          "6C",
+          "QC"
+        ],
+        "player": [
+          "4D",
+          "QH",
+          "6C"
+        ],
+        "banker": [
+          "KC",
+          "7D"
+        ],
+        "playerTotal": 0,
+        "bankerTotal": 7,
+        "outcome": "banker",
+        "natural": false,
+        "playerNatural": false,
+        "bankerNatural": false,
+        "playerPair": false,
+        "bankerPair": false,
+        "playerPerfect": false,
+        "bankerPerfect": false,
+        "margin": 7,
+        "cardsUsed": 5
+      },
+      {
+        "serverSeed": "housebets-demo-server-seed-0001",
+        "clientSeed": "demo-client",
+        "nonce": 3,
+        "deck": [
+          "2D",
+          "6H",
+          "6D",
+          "8S",
+          "QC",
+          "7S"
+        ],
+        "player": [
+          "2D",
+          "6D"
+        ],
+        "banker": [
+          "6H",
+          "8S"
+        ],
+        "playerTotal": 8,
+        "bankerTotal": 4,
+        "outcome": "player",
+        "natural": true,
+        "playerNatural": true,
+        "bankerNatural": false,
+        "playerPair": false,
+        "bankerPair": false,
+        "playerPerfect": false,
+        "bankerPerfect": false,
+        "margin": 4,
+        "cardsUsed": 4
+      },
+      {
+        "serverSeed": "5a1f7d2c9e4b8a3f6d0c2b5e8f1a4d7c0b3e6f9a2d5c8b1e4f7a0d3c6b9e2f5a",
+        "clientSeed": "housebets",
+        "nonce": 7,
+        "deck": [
+          "TD",
+          "9H",
+          "AC",
+          "AH",
+          "JH",
+          "JD"
+        ],
+        "player": [
+          "TD",
+          "AC",
+          "JH"
+        ],
+        "banker": [
+          "9H",
+          "AH",
+          "JD"
+        ],
+        "playerTotal": 1,
+        "bankerTotal": 0,
+        "outcome": "player",
+        "natural": false,
+        "playerNatural": false,
+        "bankerNatural": false,
+        "playerPair": false,
+        "bankerPair": false,
+        "playerPerfect": false,
+        "bankerPerfect": false,
+        "margin": 1,
+        "cardsUsed": 6
+      }
+    ],
+    "summary": "A fresh 8-deck shoe (416 cards) per round. block_i = HMAC_SHA256(key = serverSeed, message = clientSeed:nonce:i); the stream block_0 ‖ block_1 ‖ … is read as big-endian 32-bit numbers u. shoe = [0..415] with entry k holding card id k mod 52, shuffled by Fisher–Yates from the top: for k = 0..414: n = 416 − k, draw u, redraw while u ≥ 2^32 − (2^32 mod n), j = k + (u mod n), swap shoe[k] and shoe[j]. Cards are dealt shoe[0], shoe[1], … — George's House Baccarat derivation (handover 21-fair.js). Card id 0..51: suit = floor(id / 13) (0 ♠, 1 ♥, 2 ♦, 3 ♣), rank = id mod 13 (A, 2..10, J, Q, K). Baccarat values: A = 1, 2..9 face, 10/J/Q/K = 0; a hand's total is the sum mod 10. The deal: deal order P1 B1 P2 B2: Player shoe[0], shoe[2]; Banker shoe[1], shoe[3]; then each third card the rules call for takes the next card (the Player's third first); a two-card total of 8 or 9 either side (a natural) ends the round; else Player draws its third on 0..5, stands on 6..7; Banker then: if Player stood, draws its third on 0..5; else draws by the Player-third-card rule (bt 0..2 always; 3 unless v=8; 4 on 2..7; 5 on 4..7; 6 on 6..7; 7 never); higher total wins; equal is a tie. 99% on every spot, priced on the fresh 8-deck shoe: Player = (99/100 − T)/P, Banker = (99/100 − T)/B, Tie = 99/100 / T, Pair = 99/100 ÷ (31/415), Either Pair = 99/100 ÷ P(either), Perfect Pair = 99/100 ÷ P(either hand's first two cards are the same card). Dragon Bonus pays profit = k·m per rung (m = 1, 30, 10, 6, 4, 2, 1 for natural, 9 … 4), with one exact k per side making P(push) + Σ p_i × (1 + k·m_i) = 99/100. These are George's House Baccarat pays in exact form. The server seed is committed up front by its SHA-256 hash and revealed when you rotate the pair, so every card of a round is fixed before the bet and can be checked afterwards."
+  }
+}

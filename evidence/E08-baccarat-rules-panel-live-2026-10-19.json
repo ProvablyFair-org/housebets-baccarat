@@ -1,0 +1,87 @@
+{
+  "exhibit": "E08",
+  "what": "HouseBets baccarat game page: the rules panel text (English) as shipped in the bundle the live page URL served on 19 Oct 2026 (last-modified Fri, 16 Oct 2026 09:18:09 GMT, the same last-modified as the other ten House Games bundles fetched that day). E02 is the same panel in the 10 Oct copy; that the live page used the 10 Oct copy while this package's rounds were captured (12-13 Oct) is inferred, not observed.",
+  "source": {
+    "file": "bundles/live-2026-10-19/platform-housegames-baccarat-game.js (HouseBets workshop)",
+    "url": "/static/platform-housegames-baccarat-game.js",
+    "sha256": "2e641df59cbb48188c556b0deb22e0817267706fa43c5798b71082e995e354c1",
+    "bytes": 957398,
+    "lastModified": "Fri, 16 Oct 2026 09:18:09 GMT",
+    "etag": "W/\"e9bd6-1a144012868\"",
+    "fetchedAt": "Mon, 19 Oct 2026 13:01:16 GMT",
+    "contentType": "application/javascript; charset=UTF-8",
+    "loadedByLivePage": "inferred, not observed: not checked on 19 Oct; the same /static URL as the 10 Oct copy, whose loading by the live page is itself inferred (bundles/LIVE-BUNDLES.md)"
+  },
+  "previous": {
+    "exhibit": "E02",
+    "file": "evidence/E02-baccarat-rules-panel-2026-10-10.json",
+    "bundleSha256": "1c38b483c0f683a3b09f095b2cadf28d1760861047e7b352ae03d91883dae245",
+    "bytes": 933936
+  },
+  "rulesPanelEnglish": {
+    "rules": "Rules",
+    "rulesSideTitle": "Side bets",
+    "rulesPairDef": "Player Pair / Banker Pair: that hand's first two cards are the same rank.",
+    "rulesEitherDef": "Either Pair: either hand's first two cards are the same rank.",
+    "rulesPerfectDef": "Perfect Pair: either hand's first two cards are the same card — same rank and same suit.",
+    "rulesDragonTitle": "Dragon Bonus",
+    "rulesDragonDef": "Player Dragon / Banker Dragon pay when that hand wins — by how many points it wins, or for a natural. A natural tie returns the stake; anything else loses.",
+    "rulesDragonWin": "Win",
+    "rulesDragonNatural": "Natural",
+    "rulesDragonBy": "By {n}",
+    "rulesIntro": "Punto Banco. Card values: A = 1, 2–9 face, 10/J/Q/K = 0; a hand's total is the sum modulo 10. Player and Banker each get two cards; a hand of 8 or 9 is a natural and no third card is drawn. Otherwise Player draws a third on 0–5 and stands on 6–7. Banker draws by the standard table below. The higher total wins; equal totals pay the Tie spot.",
+    "rulesPaysFine": "Theoretical RTP before payout rounding: 99% (1% house edge; no commission). Player and Banker push on a tie. Payouts are computed in integer 1e-8 units with a floor per round — the server's figure is reproducible to the last unit from the revealed seeds (see the Fairness tab).",
+    "rulesBankerTitle": "Banker's third-card rule",
+    "rulesBankerTotal": "Banker total",
+    "rulesBankerDraws": "Draws when the player's third is…",
+    "rulesBankerAlways": "always",
+    "rulesBankerNot8": "anything except 8",
+    "rulesBankerNever": "never",
+    "rulesBankerFine": "If neither initial hand is a natural (8 or 9) and Player stands on 6–7, Banker draws on 0–5 and stands on 6–7.",
+    "rulesLimitsH": "Limits",
+    "rulesMaxBet": "Max bet",
+    "rulesMaxWinCap": "Most a spin can win above its stake: {cap}.",
+    "rulesMinBet": "Min bet",
+    "rulesMaxWinK": "Max win"
+  },
+  "changedSinceE02": {
+    "rulesPaysFine": {
+      "E02 (10 Oct)": "Every spot returns exactly 99% of stake over the long run (1% house edge; no commission). Player and Banker push on a tie. Payouts are computed in integer 1e-8 units with a floor per round — the server's figure is reproducible to the last unit from the revealed seeds (see the Fairness tab).",
+      "E08 (19 Oct)": "Theoretical RTP before payout rounding: 99% (1% house edge; no commission). Player and Banker push on a tie. Payouts are computed in integer 1e-8 units with a floor per round — the server's figure is reproducible to the last unit from the revealed seeds (see the Fairness tab)."
+    },
+    "rulesBankerFine": {
+      "E02 (10 Oct)": "When the player stood (natural or 6–7), the banker draws on 0–5 and stands on 6–7.",
+      "E08 (19 Oct)": "If neither initial hand is a natural (8 or 9) and Player stands on 6–7, Banker draws on 0–5 and stands on 6–7."
+    },
+    "rulesLimitsH": {
+      "E02 (10 Oct)": null,
+      "E08 (19 Oct)": "Limits"
+    },
+    "rulesMaxBet": {
+      "E02 (10 Oct)": null,
+      "E08 (19 Oct)": "Max bet"
+    },
+    "rulesMaxWinCap": {
+      "E02 (10 Oct)": null,
+      "E08 (19 Oct)": "Most a spin can win above its stake: {cap}."
+    },
+    "rulesMinBet": {
+      "E02 (10 Oct)": null,
+      "E08 (19 Oct)": "Min bet"
+    },
+    "rulesMaxWinK": {
+      "E02 (10 Oct)": null,
+      "E08 (19 Oct)": "Max win"
+    }
+  },
+  "panelKeysCalled": {
+    "note": "rules keys the page code passes to its translator, (\"rulesX\" ...), in the 10 Oct copy vs the live copy",
+    "added": [
+      "rulesLimitsH",
+      "rulesMaxBet",
+      "rulesMaxWinCap",
+      "rulesMinBet"
+    ],
+    "removed": []
+  }
+}

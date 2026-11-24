@@ -1,0 +1,186 @@
+{
+  "suite": "housebets-baccarat",
+  "profileSha256": "47bb372f91578c3b3bdce9f7048709da034ce8457fd929a16a32ed22304d6d52",
+  "verdict": "PROVABLY FAIR — Full Pass",
+  "summary": {
+    "passes": 22,
+    "fails": 0,
+    "overstated": 0,
+    "operatorFlags": 0,
+    "captureFlags": 0,
+    "packageChecks": 5,
+    "excluded": [
+      "BACCARAT-27"
+    ]
+  },
+  "steps": [
+    {
+      "id": "BACCARAT-01",
+      "status": "PASS",
+      "origin": null,
+      "detail": "sha256(utf8(revealed)) == committed: 130/130 Phase A seeds, 146/146 across Phase A, C, C $10 and D; 0 rounds on an unrevealed seed"
+    },
+    {
+      "id": "BACCARAT-02",
+      "status": "PASS",
+      "origin": null,
+      "detail": "Phase A 129/129 links, pre-capture anchor true, last next-hash == the pair active after the capture true; C 5/5 links, pre-capture anchor true, last next-hash == the pair active after the capture true; C $10 5/5 links, pre-capture anchor true, last next-hash == the pair active after the capture true; D 3/3 links, pre-capture anchor true, last next-hash == the pair active after the capture true; the active seed was not revealed early (E07, GET /housegames/unhash at 2026-10-12T13:59:24.921Z): the active pair's hash (Phase A's pre-capture pair) refused 500, its next hash (Phase A epoch 0's commitment) refused 404, both before Phase A's first round at 2026-10-12T17:07:33.397Z, and a rotated-away hash answered 200 with a seed that hashes to it: true"
+    },
+    {
+      "id": "BACCARAT-03",
+      "status": "PASS",
+      "origin": null,
+      "detail": "146/146 epochs (Phase A, C, C $10, D): every round's answer carries its epoch's server-seed hash and client seed; the capture's copy of the round and the server's round record == the server's answer 7300/7300 rounds; the round lookup == the answer (deck, outcome, fairness, stake, payout, every spot's amount, result and payout) 146/146 rounds where it was read"
+    },
+    {
+      "id": "BACCARAT-04",
+      "status": "PASS",
+      "origin": null,
+      "detail": "146/146 epochs: nonces exactly 1..50 once each, no gap, repeat or reorder, and N == the server's nonce read at rotation (base is the declared constant, not the minimum observed)"
+    },
+    {
+      "id": "BACCARAT-05",
+      "status": "PASS",
+      "origin": null,
+      "detail": "Phase A 6500 rounds / 130 seeds / 130 epochs, every epoch 50: true; supplementary C 300 (6 epochs), C $10 300 (6), D 200 (4), every epoch 50: true — against src/loader.ts constants, never meta; time windows (capture log, UTC): Phase A 2026-10-12 17:07:33–19:52:40, C 2026-10-13 11:53:53–11:59:17, C $10 2026-10-13 12:41:13–12:43:11, D 2026-10-13 12:00:15–12:03:09"
+    },
+    {
+      "id": "BACCARAT-06",
+      "status": "PASS",
+      "origin": null,
+      "detail": "a wrong client seed changes the first four dealt cards in 6500/6500 Phase A rounds (0 identical, bound 5.15 from P ≤ 1.39e-7); Phase D: player-set seeds [\"provablyfair-1\",\"provablyfair-2\",\"player-seed-abc\",\"1234567890\"] (predictable, disclosed DL-2, all 4 epochs exposed), 200/200 rounds' cards and 200/200 payouts recompute, 200/200 deal different cards under the previous client seed; phases A–C client seeds labelled by the capture as drawn from node:crypto randomBytes(16) (a CSPRNG) on 142/142 seeds (the label is checked, not the randomness); empty-seed control: POST /housegames/change_seed {clientSeed: \"\"} refused, HTTP 400 (E06)"
+    },
+    {
+      "id": "BACCARAT-07",
+      "status": "PASS",
+      "origin": null,
+      "detail": "the first six cards of the shuffled 8-deck shoe (E01: HMAC-SHA256(serverSeed, clientSeed:nonce:i) u32s, top-down Fisher–Yates with rejection) == the served deck, and the Player / Banker hands == the served hands in deal order: 6500/6500 Phase A rounds (coverage 6500 == expectedRounds 6500); fairness.version \"shoe8\" 6500/6500; answer client seed == epoch client seed 6500/6500; the supplementary sets, each required in full: C cards 300/300, version 300/300, client seed 300/300; C $10 cards 300/300, version 300/300, client seed 300/300; D cards 200/200, version 200/200, client seed 200/200"
+    },
+    {
+      "id": "BACCARAT-08",
+      "status": "PASS",
+      "origin": null,
+      "detail": "every range n = 416 … 2 has its threshold 2^32 − (2^32 mod n), a multiple of n: true — each accepted step is exactly uniform (bias 0 ≤ 2^-32); the shuffle applies the threshold and the mod map (synthetic stream: u = 2^32 − 1 redrawn, u = 0 → id 0; u = threshold − 1 accepted → id 51): true; the largest rejection probability of any step is 9.453e-8 (n = 416 … 2); rejection census of this run: 0 redraws in the first six steps of 7300 recomputed rounds (≈ 43800 accepted draws), Pass 1 census in BACCARAT-20"
+    },
+    {
+      "id": "BACCARAT-09",
+      "status": "PASS",
+      "origin": null,
+      "detail": "the 5 worked examples of the published spec (E01 examples, read from the exhibit now) re-deal 5/5; the 6-step partial shuffle == the first six cards of the full 415-step shuffle 5/5; captured round idx 0 (3C AC KC 8C 2C 7C) recomputes and pays: true; also tests/rng.test.ts"
+    },
+    {
+      "id": "BACCARAT-10",
+      "status": "PASS",
+      "origin": null,
+      "detail": "from the recomputed cards (E01 deal: values mod 10, naturals 8/9 stop, Player draws on 0–5, Banker by the published table): totals and outcome == served 6500/6500 Phase A rounds; served natural / margin / pair / perfect flags == recomputed 6500/6500; the supplementary sets, each required in full: C totals and outcome 300/300, flags 300/300; C $10 totals and outcome 300/300, flags 300/300; D totals and outcome 200/200, flags 200/200 (the outcome is replayed, the served field only compared)"
+    },
+    {
+      "id": "BACCARAT-11",
+      "status": "PASS",
+      "origin": null,
+      "detail": "every staked spot paid floor(stake × published fraction) on the 1e-8 grid, 0 on a loss, the stake on a Player/Banker tie push: 42898/42898 Phase A spot settlements; round payout == Σ spots 6500/6500; stake == Σ sent 6500/6500; the server's round record (roundId, stake, payout) == recomputed 6500/6500; Phase D 200/200 rounds, record 200/200; the served per-spot result label (win / lose / push) == recomputed 44816/44816 spot settlements (Phase A, C, C $10, D); money values on the 1e-8 grid (request, answer, round record, capture copy, lookup, balances) 224098/224098; the served multiplier (a ratio, never read) == payout / stake 7300/7300; rounding as published, quoted from the exhibits: E02 rulesPaysFine \"Payouts are computed in integer 1e-8 units with a floor per round — the server's figure is reproducible to the last unit from the revealed seeds (see the Fairness tab).\"; E01 rules \"every payout is rounded down once to the wallet's smallest unit (1e-8), so a spot's return never exceeds 99%\"; the profile asserts a per-spot floor (BACCARAT-13); operator finding (OF-1): the server floors each spot, not once per round as the E02 sentence says; a single floor of a round's exact total would pay more on 2785 of 6500 Phase A rounds (2294 by 1e-8, 481 by 2e-8, 10 by 3e-8; 3286 units = 0.00003286 USDT), 2874 of 7300 rounds in all four sets (3393 units); on the one-spot sets C 0/300 and C $10 0/300; by at most 3e-8 in a captured round; over every outcome class of the 8-deck deal with all nine spots at 0.02 by at most 4e-8 (exact); at any stake by at most 5e-8 (at most 6 spots pay a non-integer multiple of the stake in one class) — reported, not scored"
+    },
+    {
+      "id": "BACCARAT-12",
+      "status": "PASS",
+      "origin": null,
+      "detail": "Phase C 300 rounds on the Banker spot at 2 (= 100 × the Phase A base 0.02: true): cards 300/300, tableau 300/300, pays by the same fraction 300/300, record 300/300, banker-only as sent and served true, 146 elevated Banker wins (≥ 100); $10 set 300 rounds at 10: cards 300/300, pays 300/300, banker-only true, 145 wins (≥ 100); the stake is not an input to the deal"
+    },
+    {
+      "id": "BACCARAT-13",
+      "status": "PASS",
+      "origin": null,
+      "detail": "winning spots paid floor(stake × num/den) with the E01 fraction (Dragon: stake × (kDen + kNum·m)/kDen at the recomputed rung), rounded down once: player 2171/2171, banker 2555/2555, tie 460/460, playerPair 378/378, bankerPair 378/378, eitherPair 719/719, perfectPair 151/151, playerBonus 1405/1405, bankerBonus 1433/1433; the fractions are the server's own (BACCARAT-26 compares src/spec.ts with E01); no operator odds, probability or multiplier field is read by the derivation (the served \"multiplier\" is never used)"
+    },
+    {
+      "id": "BACCARAT-14",
+      "status": "PASS",
+      "origin": null,
+      "detail": "the largest pay on any one spot at the max bet 20006.20192259 is 703173.96780127 (bankerBonus, Dragon rung 9; 683167.76587868 above the stake) ≤ the max-win cap 1000310.0961298 (E03; a cap on the winnings above the stake, E08 rulesMaxWinCap \"Most a spin can win above its stake: {cap}.\"): true; cap branch: every answer names the cap 1000310.0961298 (maxWin field == E03) 7300/7300; if the max bet applies per spot (E03 does not say), a round with all nine spots at 20006.20192259 pays up to 2002330.18246287 (banker by 9, perfect pair, both pairs), 1822274.36515956 above its stake of 180055.81730331; the winnings above the stake first exceed the cap at 10982.10354654 per spot (banker by 9, perfect pair, both pairs: 1000310.09613026 above the stake; one unit lower no outcome exceeds it), so the cap is reachable within the bet limits; the capture never came near it (largest round payout 19.51262671), so whether the server refuses such a bet or caps its pay was never observed; push rules (E01 rules, E02 rulesPaysFine) witnessed in data: Player/Banker push on a tie 922/922, Dragon push on a natural tie 149/149, Dragon loses on a non-natural tie 782/782 (Phase A + D) — scored by the rule text: every quoted pay lies within the cap and every push rule is witnessed; the cap branch, reachable within the bet limits and never exercised, is declared unwitnessed (DL-11), as the rule allows"
+    },
+    {
+      "id": "BACCARAT-15",
+      "status": "PASS",
+      "origin": null,
+      "detail": "capture plan (src/loader.ts PLAN_SUBPHASES, crypto.randomInt spot draws): A 4333/4333 × 9 spot(s), B 1300/1300 × 1 spot(s), C 867/867 × 3 spot(s): true; Phase D sub-phases (rounds × spots per round): DA × 9: 133, DB × 1: 40, DC × 3: 27; Phase A rounds per spot player 4761, banker 4762, tie 4759, playerPair 4765, bankerPair 4793, eitherPair 4771, perfectPair 4750, playerBonus 4781, bankerBonus 4756 (floor 50); outcome classes reached: 23/23; third-card branches natural 2222, none 216, P 1169, B 783, PB 2110; win margins 1–9 854/723/587/504/382/339/224/96/40; per-spot settlement classes never reached on the rounds that staked the spot: none, carrying 0.0000 % of the worst spot's theoretical RTP"
+    },
+    {
+      "id": "BACCARAT-16",
+      "status": "PASS",
+      "origin": null,
+      "detail": "every baccarat round of the package is in the platform's bet history with the recomputed stake and payout and the won/lost status: 7300/7300 (E04, 7300 rows); E05 (the full output of the account reconciliation, an exhibit: the ledger and reconcile-full.py are not shipped, so E05 is checked for its arithmetic and against this package's own data, not re-derived): 60 dataset rows, every row's net == paid − staked: true; the rows sum to TOTAL 86966 rounds, staked 28096.76845689, paid 28024.11851634: true; ledger 86979 entries = 86966 matched + 0 open + 13 from 10 Oct, unexplained 0, adds up and matched == TOTAL rounds: true; balance before 986.84718000 == after 914.19723945 − net -72.64994055 + open stakes 0 (derived in E05, not read), and the last answer's 4-dp balance == after: true; RECONCILED and no FAIL line: true; this package's datasets == their E05 rows (rounds, staked, paid, recomputed here): Phase A true, C true, C $10 true, D true; same-engine rows in E05 that this package does not ship: ../capture-2026-10-12/baccarat/housebets-baccarat-450rounds.json (450 rounds, staked 59.40000000, paid 65.33636918); the per-round balance field is not used: of 6471 consecutive Phase A answers that both carry the 4-dp balance (14 answers carry none), the balance step is the round's own payout − stake within 1e-4 on 79 and is not on 6392 — several games were captured concurrently on the account, so other games' settlements interleave"
+    },
+    {
+      "id": "BACCARAT-17",
+      "status": "PASS",
+      "origin": null,
+      "detail": "the RNG message is clientSeed:nonce:i (E01 derivation; no spot, stake or side-bet field): true; witnessed on data: every round's cards recompute from (serverSeed, clientSeed, nonce) with the spots excluded from the derivation, 7300/7300 rounds across 94 distinct Phase A spot sets and the banker-only Phase C — no player choice steers the cards after the commitment"
+    },
+    {
+      "id": "BACCARAT-18",
+      "status": "PASS",
+      "origin": null,
+      "detail": "exact enumeration of the 8-deck deal (src/enumerate.ts: 298 joint classes over D = 416·415·414·413·412·411, weights sum to D: true) reproduces the server's published probabilities (E01 probabilities, read from the exhibit now and compared, never used by the derivation) 23/23 as reduced fractions; negative controls rejected: a corrupted card value (5 counted as 6) moves P(Banker) to 8914429473184/19524993263685 (≠ published): true; a fraction off by 1e-6 moves the Banker RTP off 99/100: true"
+    },
+    {
+      "id": "BACCARAT-19",
+      "status": "PASS",
+      "origin": null,
+      "detail": "exact RTP (unfloored) of the 9 spots: true min 99.000000 %, true max 99.000000 % (each == 99/100: 9/9, information only); the claim, read from the exhibits now, held to the highest figure stated (99.000000 %): E02 rulesPaysFine \"Every spot returns exactly 99% of stake over the long run (1% house edge; no commission).\" → 99 %; E01 return \"99% on every spot, priced on the fresh 8-deck shoe: Player = (99/100 − T)/P, Banker = (99/100 − T)/B, Tie = 99/100 / …\" → 99 %; E01 summary \"99% on every spot, priced on the fresh 8-deck shoe: Player = (99/100 − T)/P, Banker = (99/100 − T)/B, Tie = 99/100 / …\" → 99 %; E01 rules \"every payout is rounded down once to the wallet's smallest unit (1e-8), so a spot's return never exceeds 99%\" → 99 %; E08 rulesPaysFine \"Theoretical RTP before payout rounding: 99% (1% house edge; no commission).\" → 99 % → RTP-CLAIM PASS (rule RTP-CLAIM 1.2.0, enforced true: PASS), house side beyond the 0.10 pp band 0, worst spot player at 0.000000 pp; the 1e-8 floor lowers a spot's exact RTP by at most 2.709e-7 (player at min 0.01000311; stakes 0.02, 2, 10 and the 0.01000311 minimum, exact) — disclosed, never above it; rounding as published: E01 rules \"every payout is rounded down once to the wallet's smallest unit (1e-8), so a spot's return never exceeds 99%\", E02 rulesPaysFine \"Payouts are computed in integer 1e-8 units with a floor per round — the server's figure is reproducible to the last unit from the revealed seeds (see the Fairness tab).\" — the served round payout == the sum of per-spot floors on 7300/7300 rounds (BACCARAT-11, which also counts the rounds a single floor per round would pay more): the server floors each spot, consistent with E01 and as the profile (BACCARAT-13) asserts, not once per round as the E02 text says — an operator finding (OF-1), reported, not scored; committed table matches: true"
+    },
+    {
+      "id": "BACCARAT-20",
+      "status": "PASS",
+      "origin": null,
+      "detail": "census re-run in full == the pinned outputs/simulation-results.json byte for byte: true; 1,000,000 fresh-seed rounds (≥ 1,000,000: true), every spot settled on every round: card-id uniformity at shoe positions 0–5 chi² p 0.808/0.867/0.842/0.448/0.938/0.130 (df 51), lag-1 r 5.99e-4 z 0.60 p 0.550, runs z -1.91 p 0.056 (each ≥ α/8 = 0.00125: true); 23/23 outcome classes within 5σ + 1e-4 of the exact enumeration (worst |z| 1.75, tie); 9/9 spot RTPs within 5·SE + 1e-4 of the exact floored RTP at 1.00 (player 0.9908, banker 0.9892, tie 0.9847, playerPair 0.9938, bankerPair 0.9900, eitherPair 0.9922, perfectPair 0.9903, playerBonus 0.9913, bankerBonus 0.9879; worst |z| 1.75); bands (5·σ/√n + 1e-4, σ the spot's exact standard deviation at 1.00, n = 1,000,000): player ±0.487 pp, banker ±0.474 pp, tie ±1.536 pp, playerPair ±1.752 pp, bankerPair ±1.752 pp, eitherPair ±1.218 pp, perfectPair ±2.671 pp, playerBonus ±1.274 pp, bankerBonus ±1.303 pp against a 1.000 pp house edge (floored at 1.00) — 7 of 9 bands are wider than the edge, so for those spots this check cannot detect an edge of that size from this sample (the RTP evidence is the exact enumeration, BACCARAT-18/19); outcome-class bands ±0.038 … ±0.259 pp (5·√(p(1−p)/n) + 1e-4); shuffle rejections 0 in 6,000,000 draws"
+    },
+    {
+      "id": "BACCARAT-21",
+      "status": "PASS",
+      "origin": null,
+      "detail": "146 revealed epochs, every revealed seed of the package (Phase A 130/130 (z -0.222), C 6/6 (z 1.299), C $10 6/6 (z 0.431), D 4/4 (z 0.566); 146 expected, in that order: true) × 10,000 nonces (early = 1..50, reference = 51..10000), each epoch's played spot sets cycled in nonce order; early-window payout of the 7300 played rounds vs its exact mean and variance (enumeration): z 0.663, one-sided p 0.7463 (≥ 0.01: true); 76 epochs below expectation, 70 at or above; reference window z -0.377; early window == the served payouts of the captured rounds: true; detection power: a 11.64 pp RTP deficit on the staked amount at 80 %; false-alarm rate 0.0097 ± 0.000438 (src/false-alarm-pass2.ts, 50,000 replicates from the exact joint distribution; the point estimate is ≤ the 0.01 cap, its 95 % upper bound rate + 1.96·SE = 0.0105: consistent with the cap, not shown under it)"
+    },
+    {
+      "id": "BACCARAT-22",
+      "status": "INFO",
+      "origin": null,
+      "detail": "6500 captured Phase A rounds: Banker 2976 / Player 2890 / Tie 634 vs the exact enumeration chi² 0.43 (df 2) p 0.8047; Player Pair z 0.63, Banker Pair z -0.69, Perfect Pair z -1.13 — informational (a few-thousand-round sample has little power and never bears the verdict)"
+    },
+    {
+      "id": "BACCARAT-23",
+      "status": "PASS",
+      "origin": null,
+      "detail": "MANIFEST.md S5-MATRIX block: 8 rows; ids and names == the framework's standardized matrix (S5-1 Replay protection, S5-2 Input validation, S5-3 Seed integrity under adversarial input, S5-4 Cross-player isolation, S5-5 Payout field integrity, S5-6 Nonce sequence enforcement, S5-7 Parameter boundary enforcement, S5-8 Game-specific state) in order, each with a status: true; statuses 5 Pass on every control the row names, 2 Pass on part of the controls it names, 1 Not tested; names listed in the vendored profile's BACCARAT-23: none (the framework list above applies)"
+    },
+    {
+      "id": "BACCARAT-24",
+      "status": "PASS",
+      "origin": null,
+      "detail": "site-verifier/derive.js (generated from src/rng.ts by scripts/build-site-verifier.mjs): sha256 8dc6a04274c84df1c68bebf3e75708d19c3c527529a108e327b607e549c83d21; == SITE_VERIFIER_PIN in src/artifact-pins.ts: true; == its RELEASE-MANIFEST.json pin: true; quoted in MANIFEST.md and README.md: true; the module loaded from that file exports what src/rng.ts exports (TWO32, fullShoe, limitOf, sha256Hex, shoeTop, shuffleTop, u32Stream): true; run side by side with src/rng.ts on every captured round of the 4 shipped datasets: 7300 rounds, 29762 calls (TWO32 1, limitOf 415, sha256Hex 146, u32Stream 7300, shuffleTop 7300, shoeTop 7300, fullShoe 7300; 7/7 exports exercised; u32Stream compared on its first 16 values, fullShoe on all 416 cards), 0 differing results"
+    },
+    {
+      "id": "BACCARAT-25",
+      "status": "PASS",
+      "origin": null,
+      "detail": "README.md \"Verify a bet\" carries where the seed is revealed, the fields, the commitment encoding and the shuffle: 6/6 markers"
+    },
+    {
+      "id": "BACCARAT-26",
+      "status": "PASS",
+      "origin": null,
+      "detail": "4 datasets + 8 evidence exhibits match their sha256 pinned in src/loader.ts; the paytable the derivation reads (src/spec.ts PAYS, DRAGON, RUNG) equals the server's published fractions (E01 pays, dragon, rungs): true; the limits src/spec.ts copies (MIN_STAKE, MAX_BET, MAX_WIN) equal E03, read now: true; E01's probabilities and worked examples and a return figure in each of 5 places (E02, E01) read from the exhibits: true"
+    },
+    {
+      "id": "BACCARAT-30",
+      "status": "PASS",
+      "origin": null,
+      "detail": "MANIFEST.md: 13 declared-limitation rows; load-bearing premises with \"Could the data contradict it?\": true; every exhibit E01…E08 listed by file name: true"
+    },
+    {
+      "id": "BACCARAT-31",
+      "status": "PASS",
+      "origin": null,
+      "detail": "every side bet recomputed from the cards on every round that carries it (Phase A + D): playerPair 4909/4909 (378 wins), bankerPair 4940/4940 (378 wins), eitherPair 4917/4917 (719 wins), perfectPair 4901/4901 (151 wins), playerBonus 4931/4931 (1405 wins), bankerBonus 4904/4904 (1433 wins); pair = the hand's first two cards share a rank, regardless of the main result; Either = either hand; Perfect = same rank and suit, paid once; Dragon on a natural win or a non-natural margin 9…4 at its rung, push on a natural tie; served pair / perfect flags == recomputed 6700/6700"
+    }
+  ]
+}

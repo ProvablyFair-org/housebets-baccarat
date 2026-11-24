@@ -1,0 +1,14 @@
+{
+  "verifySha256": "9d1bf0cedabb67116b1a52757b6e27ff5ec94afd552c2c9a6ed44d794ad092e8",
+  "node": "22.23.1",
+  "rngTestsExit": 0,
+  "exit": 0,
+  "verdict": "PROVABLY FAIR — Full Pass",
+  "standaloneExit": 0,
+  "standaloneVerdict": "PROVABLY FAIR — Full Pass",
+  "reproduced": true,
+  "simulateExit": 0,
+  "beyondTolerance": 0,
+  "pinnedUnchanged": true,
+  "changed": []
+}

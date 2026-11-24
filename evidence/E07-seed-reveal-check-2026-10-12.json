@@ -1,0 +1,62 @@
+{
+  "exhibit": "E07",
+  "what": "GET /housegames/unhash?hs=<hash> on 12 Oct 2026 for the baccarat seed pair: the active pair's hash, its pre-committed next hash, and a hash already rotated away",
+  "source": {
+    "file": "capture-2026-10-12/seed-reveal/unhash-check-2026-10-12.json (HouseBets workshop)",
+    "sha256": "2b113a89fa77074e198ffe20bd126c4763b53435a078d5832b087e591e8381f0"
+  },
+  "at": "2026-10-12T13:59:24.921Z",
+  "note": "GET /housegames/unhash?hs=<hash> for each game: the active pair hash, its pre-committed next hash, and an epoch hash already revealed by change_seed",
+  "baccarat": [
+    {
+      "g": "baccarat",
+      "kind": "active",
+      "st": 500,
+      "gotSeed": false,
+      "hashMatches": null,
+      "keys": "error",
+      "err": "{\"error\":\"seed_is_still_active\"}"
+    },
+    {
+      "g": "baccarat",
+      "kind": "next",
+      "st": 404,
+      "gotSeed": false,
+      "hashMatches": null,
+      "keys": "error",
+      "err": "{\"error\":\"an error occurred\"}"
+    },
+    {
+      "g": "baccarat",
+      "kind": "revealed",
+      "st": 200,
+      "gotSeed": true,
+      "hashMatches": true,
+      "keys": "seed",
+      "err": null
+    }
+  ],
+  "answers": {
+    "baccarat:active": {
+      "hs": "ca566218cfc848a16777b0e1a66c81bca621cf2561fa9f92b92001831548cac9",
+      "status": 500,
+      "body": {
+        "error": "seed_is_still_active"
+      }
+    },
+    "baccarat:next": {
+      "hs": "2b7a4d456e439cf7f2b470227abe06955d261cd807de423c8054ba9eb31da943",
+      "status": 404,
+      "body": {
+        "error": "an error occurred"
+      }
+    },
+    "baccarat": {
+      "hs": "ec2041dd7568f175145cc72e410b5ed4f8b6b06ad3d911832df51b8bc20fbfe1",
+      "status": 200,
+      "body": {
+        "seed": "d2f17adaa7ae5bf8ba1abd2be278fe7d1623201a0fd93a3b528d0ef8ab532d35"
+      }
+    }
+  }
+}

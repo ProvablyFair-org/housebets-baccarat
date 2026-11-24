@@ -1,0 +1,26 @@
+{
+  "exhibit": "E03",
+  "what": "HouseBets baccarat limits (GET /housegames/limits/baccarat)",
+  "source": {
+    "file": "data/housebets-baccarat-6500rounds.json",
+    "sha256": "061d54f26ef58aea3fb7a969b6c2ba310d6d6cc6dc932d4ea1f3776e1dd91717",
+    "field": "meta.preflight.limits"
+  },
+  "readAt": "2026-10-12T17:07:28.469Z",
+  "answer": {
+    "game": "baccarat",
+    "maxBet": 20000,
+    "maxWin": 1000000,
+    "minBet": 0.01,
+    "source": "server-config",
+    "unit": "USD",
+    "wallet": {
+      "currency": 1,
+      "decimals": 8,
+      "maxBet": 20006.20192259,
+      "maxWin": 1000310.0961298,
+      "minBet": 0.01000311,
+      "symbol": "USDT"
+    }
+  }
+}
